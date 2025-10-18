@@ -24,3 +24,19 @@ export enum EquipmentType {
   BoxTruck = "Box Truck",
   PowerOnly = "Power Only",
 }
+
+export enum QueryKey {
+  LoadId = "load_id",
+  Origin = "origin",
+  Destination = "destination",
+  EquipmentType = "equipment_type",
+  LoadWeight = "load_weight",
+}
+
+export const INDEX_MAP: Record<QueryKey, string | null> = {
+  [QueryKey.LoadId]: null,
+  [QueryKey.Origin]: "OriginIndex",
+  [QueryKey.Destination]: "DestinationIndex",
+  [QueryKey.EquipmentType]: "EquipmentTypeIndex",
+  [QueryKey.LoadWeight]: "LoadWeightIndex",
+};
