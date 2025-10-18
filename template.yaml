@@ -48,7 +48,7 @@ Resources:
           AttributeType: S
         - AttributeName: destination
           AttributeType: S
-        - AttributeName: loadboard_rate
+        - AttributeName: load_weight
           AttributeType: N
         - AttributeName: equipment_type
           AttributeType: S
@@ -68,9 +68,9 @@ Resources:
               KeyType: HASH
           Projection:
             ProjectionType: ALL
-        - IndexName: LoadboardRateIndex
+        - IndexName: LoadWeightIndex
           KeySchema:
-            - AttributeName: loadboard_rate
+            - AttributeName: load_weight
               KeyType: HASH
           Projection:
             ProjectionType: ALL
