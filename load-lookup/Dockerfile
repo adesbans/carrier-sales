@@ -1,10 +1,17 @@
 FROM public.ecr.aws/lambda/nodejs:20
 
-COPY src/app.ts package*.json ./
+# Lambda runtime looks for code under /var/task
+WORKDIR /var/task
 
-RUN npm install
-# If you are building your code for production, instead include a package-lock.json file on this directory and use:
-# RUN npm ci --production
+# Install deps (include dev deps so tsc is available to build)
+COPY package*.json ./
+RUN npm ci
 
-# Command can be overwritten by providing a different command in the template directly.
-CMD ["app.lambdaHandler"]
+# Copy tsconfig and source, then build to dist/
+COPY tsconfig.json ./
+COPY src ./src
+RUN npm run build
+
+# Tell Lambda which module.export to invoke (no .js extension)
+# This looks for /var/task/dist/app.js -> export "lambdaHandler"
+CMD ["dist/app.lambdaHandler"]

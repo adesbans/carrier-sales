@@ -2,7 +2,7 @@
   "name": "load_lookup",
   "version": "1.0.0",
   "description": "Load Lookup Function",
-  "main": "app.js",
+  "main": "dist/app.js",
   "author": "SAM CLI",
   "license": "MIT",
   "dependencies": {
@@ -11,8 +11,9 @@
     "axios": ">=1.6.0"
   },
   "scripts": {
-    "test": "mocha tests/unit/",
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test": "mocha tests/unit/"
   },
   "devDependencies": {
     "@types/node": "^24.8.1",
