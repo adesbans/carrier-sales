@@ -9,10 +9,17 @@
     "axios": ">=1.6.0"
   },
   "scripts": {
-    "test": "mocha tests/unit/"
+    "test": "mocha tests/unit/",
+    "build": "tsc"
   },
   "devDependencies": {
+    "@types/node": "^24.8.1",
     "chai": "^4.3.6",
-    "mocha": "^10.2.0"
-  }
+    "mocha": "^10.2.0",
+    "typescript": "^5.9.3"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": []
 }

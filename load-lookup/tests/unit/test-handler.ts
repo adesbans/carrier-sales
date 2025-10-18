@@ -1,6 +1,6 @@
 'use strict';
 
-import { lambdaHandler } from '../../src/app.mjs';
+import { lambdaHandler } from '../../src/app.ts';
 import { expect } from 'chai';
 var event, context;
 
