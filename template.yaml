@@ -28,7 +28,7 @@ Resources:
             Method: get
       Environment:
         Variables:
-          TABLE_NAME: !Ref LoadsTable
+          LOADS_TABLE: !Ref LoadsTable
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref LoadsTable
