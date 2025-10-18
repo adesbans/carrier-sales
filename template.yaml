@@ -26,6 +26,8 @@ Resources:
           Properties:
             Path: /load-lookup
             Method: post
+            Auth:
+              ApiKeyRequired: true
       Environment:
         Variables:
           LOADS_TABLE: !Ref LoadsTable
@@ -81,6 +83,30 @@ Resources:
           Projection:
             ProjectionType: ALL
 
+  ApiKey:
+    Type: AWS::ApiGateway::ApiKey
+    Properties:
+      Name: CarrierSalesKey
+      Enabled: true
+
+  UsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    Properties:
+      UsagePlanName: CarrierSalesPlan
+      ApiStages:
+        - ApiId: !Ref ServerlessRestApi
+          Stage: Prod
+      Throttle:
+        RateLimit: 10
+        BurstLimit: 5
+
+  UsagePlanKey:
+    Type: AWS::ApiGateway::UsagePlanKey
+    Properties:
+      KeyId: !Ref ApiKey
+      KeyType: API_KEY
+      UsagePlanId: !Ref UsagePlan
+  
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
     Properties:
