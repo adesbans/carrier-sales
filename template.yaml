@@ -26,10 +26,60 @@ Resources:
           Properties:
             Path: /load-lookup
             Method: get
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref LoadsTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref LoadsTable
     Metadata:
       DockerTag: nodejs20.x-v1
       DockerContext: ./load-lookup
       Dockerfile: Dockerfile
+  LoadsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Loads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: load_id
+          AttributeType: S
+        - AttributeName: origin
+          AttributeType: S
+        - AttributeName: destination
+          AttributeType: S
+        - AttributeName: loadboard_rate
+          AttributeType: N
+        - AttributeName: equipment_type
+          AttributeType: S
+      KeySchema:
+        - AttributeName: load_id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: OriginIndex
+          KeySchema:
+            - AttributeName: origin
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: DestinationIndex
+          KeySchema:
+            - AttributeName: destination
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: LoadboardRateIndex
+          KeySchema:
+            - AttributeName: loadboard_rate
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: EquipmentTypeIndex
+          KeySchema:
+            - AttributeName: equipment_type
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -58,3 +108,9 @@ Outputs:
   LoadLookupFunctionIamRole:
     Description: Implicit IAM Role created for Load Lookup function
     Value: !GetAtt LoadLookupFunctionRole.Arn
+  LoadsTableName:
+    Description: DynamoDB table name for loads
+    Value: !Ref LoadsTable
+  LoadsTableArn:
+    Description: DynamoDB table ARN for loads
+    Value: !GetAtt LoadsTable.Arn
