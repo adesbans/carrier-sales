@@ -25,7 +25,7 @@ Resources:
           Type: Api
           Properties:
             Path: /load-lookup
-            Method: get
+            Method: post
       Environment:
         Variables:
           LOADS_TABLE: !Ref LoadsTable
@@ -101,7 +101,7 @@ Outputs:
   LookupApi:
     Description: API Gateway endpoint URL for Prod stage for Load Lookup
       function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/Prod/load-lookup/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/Prod/load-lookup"
   LoadLookupFunction:
     Description: Load Lookup Lambda Function ARN
     Value: !GetAtt LoadLookupFunction.Arn

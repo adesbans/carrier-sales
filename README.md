@@ -73,7 +73,7 @@ The SAM CLI reads the application template to determine the API's routes and the
           Type: Api
           Properties:
             Path: /load-lookup
-            Method: get
+            Method: post
 ```
 
 ## Add a resource to your application
