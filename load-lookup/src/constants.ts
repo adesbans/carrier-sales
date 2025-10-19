@@ -26,17 +26,34 @@ export enum EquipmentType {
 }
 
 export enum QueryKey {
-  LoadId = "load_id",
+  LoadId = "loadId",
   Origin = "origin",
   Destination = "destination",
-  EquipmentType = "equipment_type",
-  LoadWeight = "load_weight",
+  PickupDatetime = "pickupDatetime",
+  DeliveryDatetime = "deliveryDatetime",
+  EquipmentType = "equipmentType",
+  LoadboardRate = "loadboardRate",
+  Notes = "notes",
+  Weight = "weight",
+  CommodityType = "commodityType",
+  NumOfPieces = "numOfPieces",
+  Miles = "miles",
+  Dimensions = "dimensions",
 }
 
 export const INDEX_MAP: Record<QueryKey, string | null> = {
   [QueryKey.LoadId]: null,
   [QueryKey.Origin]: "OriginIndex",
   [QueryKey.Destination]: "DestinationIndex",
+  [QueryKey.PickupDatetime]: "PickupDatetimeIndex",
+  [QueryKey.DeliveryDatetime]: "DeliveryDatetimeIndex",
   [QueryKey.EquipmentType]: "EquipmentTypeIndex",
-  [QueryKey.LoadWeight]: "LoadWeightIndex",
+  [QueryKey.LoadboardRate]: "LoadboardRateIndex",
+  [QueryKey.Notes]: null,
+  [QueryKey.Weight]: "WeightIndex",
+  [QueryKey.CommodityType]: "CommodityTypeIndex",
+  [QueryKey.NumOfPieces]: "NumOfPiecesIndex",
+  [QueryKey.Miles]: "MilesIndex",
+  [QueryKey.Dimensions]: "DimensionsIndex",
 };
+

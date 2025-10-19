@@ -1,9 +1,17 @@
-import { EquipmentType, Location } from "../constants";
+import { EquipmentType, Location, QueryKey } from "../constants";
 
 export type LoadRequest = {
-    readonly origin: Location;
-    readonly destination?: Location;
-    readonly weight?: number;
-    readonly equipmentType?: EquipmentType;
-}
-
+  readonly primaryKey?: QueryKey
+  readonly origin: Location;
+  readonly destination?: Location;
+  readonly pickupDatetime?: string;
+  readonly deliveryDatetime?: string;
+  readonly equipmentType?: EquipmentType;
+  readonly loadboardRate?: number;
+  readonly notes?: string;
+  readonly weight?: number;
+  readonly commodityType?: string;
+  readonly numOfPieces?: number;
+  readonly miles?: number;
+  readonly dimensions?: string;
+};
