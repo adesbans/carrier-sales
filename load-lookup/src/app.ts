@@ -6,7 +6,7 @@ import { validateEnvironmentVariables, validateRequestParams } from "./util/vali
 
 export const lambdaHandler = async (event: any, context: any) => {
   try {
-    const payload = JSON.parse(event.body);
+    const payload = event?.queryStringParameters ?? {};
     const request: LoadRequest = validateRequestParams(payload);
     const { loadsTable } = validateEnvironmentVariables();
 

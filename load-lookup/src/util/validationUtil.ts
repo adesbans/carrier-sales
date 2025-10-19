@@ -11,18 +11,15 @@ export function validateEnvironmentVariables(): { loadsTable: string } {
 }
 
 /** Validate and normalize request query parameters */
-export function validateRequestParams(body: Record<string, unknown> = {}): LoadRequest {
-  const origin = body["origin"] as Location;
+export function validateRequestParams(params: Record<string, unknown> = {}): LoadRequest {
+  const origin = params["origin"] as Location | undefined;
 
-  if (!origin) {
-    throw new Error("Missing required field: origin");
+  if (!origin || typeof origin !== "string" || origin.trim() === "") {
+    throw new Error("Missing field: origin");
   }
 
   const request: LoadRequest = {
-    origin,
-    destination: body["destination"] as Location | undefined,
-    weight: body["weight"] !== undefined ? (body["weight"] as number) : undefined,
-    equipmentType: body["equipmentType"] as EquipmentType | undefined,
+    origin
   };
 
   return request;
