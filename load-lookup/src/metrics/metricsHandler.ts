@@ -32,10 +32,11 @@ export const lambdaHandler = async (event: any) => {
         MetricName: m.name,
         Value: Number(m.value),
         Unit: m.unit,
-        Timestamp: m.timestamp ? new Date(m.timestamp) : undefined,
+        Timestamp: new Date(),
         Dimensions: Object.entries(m.dimensions || {}).map(
           ([Name, Value]) => ({ Name, Value } as Dimension)
         ),
+        StorageResolution: 1,
       }));
       await cw.send(new PutMetricDataCommand({ Namespace: NS, MetricData }));
     }
