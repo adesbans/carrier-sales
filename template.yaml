@@ -82,6 +82,36 @@ Resources:
               KeyType: HASH
           Projection:
             ProjectionType: ALL
+  MetricsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+        - arm64
+      Events:
+        MetricsPost:
+          Type: Api
+          Properties:
+            Path: /metrics
+            Method: post
+            Auth:
+              ApiKeyRequired: true
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: "cloudwatch:PutMetricData"
+              Resource: "*"
+      Environment:
+        Variables:
+          METRIC_NAMESPACE: CarrierSales/Metrics
+      ImageConfig:
+        Command:
+          - dist/metrics/metricsHandler.lambdaHandler
+    Metadata:
+      DockerTag: nodejs20.x-v1
+      DockerContext: ./load-lookup
+      Dockerfile: Dockerfile
+    
 
   ApiKey:
     Type: AWS::ApiGateway::ApiKey
