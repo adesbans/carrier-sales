@@ -15,9 +15,7 @@ export const lambdaHandler = async (event: any, context: any) => {
 
     const formattedResponse = {
       statusCode: 200,
-      body: JSON.stringify({
-        message: JSON.stringify(formattedLoads),
-      })
+      body: JSON.stringify(formattedLoads)
     };
 
     return formattedResponse;
