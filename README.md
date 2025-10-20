@@ -1,5 +1,19 @@
 # carrier-sales
 
+# Load Lookup API
+
+The Load Lookup API is a backend service that powers the freight brokerage AI system for a freight brokerage firm. It allows real-time retrieval of available freight loads based on parameters such as origin, destination, equipment type, weight, and other criteria. This API serves as the foundation for AI-driven voice interactions with carriers, enabling automated load discovery, presentation, and negotiation.
+
+The API is designed to integrate directly with a conversational AI agent that:
+- Authenticates carriers by MC number
+- Gathers load preferences such as origin city or equipment type
+- Retrieves matching loads from the Load Lookup service
+- Reads out summarized load details to the customer
+- Handles negotiation and confirmation steps through follow-up workflows
+
+This project uses AWS Lambda and API Gateway to provide a scalable, serverless backend that supports these AI-driven workflows. The application is built using the AWS Serverless Application Model (SAM) for easy deployment, testing, and management.
+
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - load-lookup - Code for the application's Lambda function and Project Dockerfile.
